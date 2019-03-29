@@ -67,11 +67,7 @@ class Address extends DataBase implements Action{
 
             return $row;
             
-        } else {
-            
-            return false;
-            
-        }
+        } return false;
     }
     
     
@@ -85,11 +81,7 @@ class Address extends DataBase implements Action{
 
             return $this;
             
-        } else {
-            
-            return false;
-            
-        }
+        } return false;
     }
 
     public function update()
@@ -103,9 +95,7 @@ class Address extends DataBase implements Action{
         if ($result = Self::$conn->query($sql)) {
 
             return $this;
-        } else {
-            return false;
-        }
+        } return false;
     }
 
     public function deleteFromDB()
@@ -125,11 +115,7 @@ class Address extends DataBase implements Action{
             
             return true;
             
-        } else {
-            
-            return false;
-            
-        }
+        } return false;
     }
 
      public static function loadAllFromDB() {
@@ -141,9 +127,7 @@ class Address extends DataBase implements Action{
                 $row[$key] = $value;
             }
             return $row;
-        }else {
-            return false;
-        }
+        } return false;
     }
 
 }

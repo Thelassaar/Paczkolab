@@ -41,58 +41,48 @@ class Size extends DataBase implements Action {
     {
         
         $sql = "SELECT * FROM size WHERE id = $id";
-        if ($result = Self::$conn->query($sql)) {
+        if ($result = self::$conn->query($sql)) {
             $row = $result->fetch_assoc();
             
             $this->id = $row['id'];
             
             return $row;
             
-        } else {
-            
-            return false;
-            
-        }
+        } return false;
     }
     
     public function saveToDB()
     {
-        $size = Self::$conn->real_escape_string($this->size);
-        $price = Self::$conn->real_escape_string($this->price);
+        $size = self::$conn->real_escape_string($this->size);
+        $price = self::$conn->real_escape_string($this->price);
 
         $sql = "INSERT INTO size(size, price) VALUES ('$size', '$price')";
         
         
-        if ($result = Self::$conn->query($sql)) {
-            $this->id = Self::$conn->insert_id;
+        if ($result = self::$conn->query($sql)) {
+            $this->id = self::$conn->insert_id;
             $this->size = $size;
             $this->price = $price;
 
             return $this;
             
-        } else {
-            
-            return false;
-            
-        }
+        } else return false;
     }
 
     public function update()
     {
-        $size = Self::$conn->real_escape_string($this->size);
-        $price = Self::$conn->real_escape_string($this->price);
+        $size = self::$conn->real_escape_string($this->size);
+        $price = self::$conn->real_escape_string($this->price);
         
         $sql = "UPDATE size SET size='$size', price='$price' "
             . "WHERE id=$this->id";
         
-        $result = Self::$conn->query($sql);
+        $result = self::$conn->query($sql);
 
-        if ($result = Self::$conn->query($sql)) {
+        if ($result = self::$conn->query($sql)) {
 
             return $this;
-        } else {
-            return false;
-        }
+        } return false;
     }
 
     public function deleteFromDB()
@@ -100,29 +90,23 @@ class Size extends DataBase implements Action {
         
         $sql = "DELETE FROM size WHERE id=$this->id";
 
-        if ($result = Self::$conn->query($sql)) {
+        if ($result = self::$conn->query($sql)) {
             $this->id = -1;
             
             return true;
             
-        } else {
-            
-            return false;
-            
-        }
+        } return false;
         
     }
 
     public static function loadAllFromDB() {
         $sql = "SELECT * FROM size";
 
-         if ($result = Self::$conn->query($sql)) {
+         if ($result = self::$conn->query($sql)) {
             foreach ($result as $key => $value) {
                 $row[$key] = $value;
             }
             return $row;
-        }else {
-            return false;
-        }
+        } return false;
     }
 }
